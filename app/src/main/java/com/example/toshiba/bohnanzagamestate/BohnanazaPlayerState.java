@@ -7,9 +7,7 @@ package com.example.toshiba.bohnanzagamestate;
 public class BohnanzaPlayerState {
     private String name;
     private int coins;
-    private Deck field1;
-    private Deck field2;
-    private Deck field3;
+    private Deck[] fields;
     private Deck hand;
     private boolean hasThirdField;
 
@@ -22,10 +20,13 @@ public class BohnanzaPlayerState {
     public BohnanzaPlayerState(BohnanzaPlayerState orig){
         name =  orig.name;
         coins = orig.coins;
-        field1 = new Deck(orig.field1);
-        field2 = new Deck(orig.field2);
-        field3 = new Deck(orig.field3);
+        for( int i = 0; i<3; i++) {
+            fields[i] = new Deck(orig.fields[i]);
+        }
         hand = new Deck(orig.hand);
         hasThirdField = orig.hasThirdField;
     }
+
+    //Getters and setters
+    public Deck getField(int field) { return fields[field]; }
 }

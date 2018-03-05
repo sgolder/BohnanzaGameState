@@ -14,4 +14,10 @@ public class Card {
     public Card(Card orig){
         beanName = orig.beanName;
     }
+
+    public boolean equals(Object other) {
+        if (!(other instanceof Card)) return false;
+        Card c = (Card)other;
+        return this.beanName.equals(c.beanName);
+    }
 }

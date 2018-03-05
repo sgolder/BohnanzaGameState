@@ -10,12 +10,6 @@ public class BohnanzaState {
 
     private BohnanzaPlayerState[] playerList = new BohnanzaPlayerState[4];
     private Deck[] playerHands;
-    private int playerCoins = 0;
-    private boolean hasThirdField;
-
-    private Deck field1;
-    private Deck field2;
-    private Deck field3;
 
     //Deck class will include current iteration
     private Deck mainDeck;
@@ -37,17 +31,14 @@ public class BohnanzaState {
 
         for (int j = 0; j < 4; j++) {
             for (int i = 0; i < 5; i++) {
-                moveTopCardTo(playerHands[j]);
+                mainDeck.moveTopCardTo(playerHands[j]);
             }
         }
-        BohnanzaPlayerState player1 =
-                new BohnanzaPlayerState("Reeca", playerHands[0]);
-        BohnanzaPlayerState player2 =
-                new BohnanzaPlayerState("Alyssa", playerHands[1]);
-        BohnanzaPlayerState player3 =
-                new BohnanzaPlayerState("Adam", playerHands[2]);
-        BohnanzaPlayerState player4 =
-                new BohnanzaPlayerState("Sarah", playerHands[3]);
+
+        playerList[0] = new BohnanzaPlayerState("Reeca", playerHands[0]);
+        playerList[1] = new BohnanzaPlayerState("Alyssa", playerHands[1]);
+        playerList[2] = new BohnanzaPlayerState("Adam", playerHands[2]);
+        playerList[3] = new BohnanzaPlayerState("Sarah", playerHands[3]);
 
     }
     /**
@@ -64,29 +55,60 @@ public class BohnanzaState {
         //Main and discard decks
         mainDeck = new Deck(orig.mainDeck);
         discardDeck = new Deck(orig.discardDeck);
-
-
     }
 
     //Buy new field
     public boolean buyThirdField(int playerId){
-
+        if( playerList[playerId].getHasThirdField() ){
+            return false;
+        }
+        else {
+            if( playerList[playerId].getCoins() >= 3 ){
+                playerList[playerId].setHasThirdField(true);
+                playerList[playerId].setCoins(
+                        playerList[playerId].getCoins() - 3 );
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
     }
     //plantBean
-    public boolean plantBean(int playerId){
-
+    public boolean plantBean(int playerId, int fieldId, Card toPlant,
+                             Deck origin){
+        //Check if player's turn
+        if( turn != playerId ){
+            return false;
+        }
+        //
+        Deck targetField = new Deck(playerList[playerId].getField(fieldId));
+        if (targetField == null ||
+                targetField.peekAtTopCard().equals(toPlant)){
+            origin.moveTopCardTo(playerList[playerId].getField(fieldId));
+            return true;
+        }
+        return false;
     }
     //harvestfield
-    public boolean harvestField(int playerId){
+    public boolean harvestField(int playerId, Deck field){
+        if( field == null ) {
+            return false;
+        }
+        field.getCards().clear();
 
     }
     //turntwotradecards
     public boolean turn2Cards(int playerId){
-
+        if( turn != playerId ){
+            return false;
+        }
     }
     //starttrading
     public boolean startTrading(int playerId) {
-
+        if( turn != playerId ){
+            return false;
+        }
     }
     //makeoffer
     public boolean makeOffer(int playerId) {
@@ -94,10 +116,12 @@ public class BohnanzaState {
     }
     //acceptoffer
     public boolean acceptOffer(int playerId) {
-
+        if( turn != playerId ){
+            return false;
+        }
     }
     //draw3cards
-    
+
 
     @Override
     public String toString(){

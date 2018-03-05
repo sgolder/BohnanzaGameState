@@ -69,7 +69,21 @@ public class Deck {
         }
     }
 
+    /**
+     * @return
+     * 		the top card in the deck, without removing it; null
+     * 		if the deck was empty
+     */
+    public Card peekAtTopCard() {
+        synchronized (this.cards) {
+            if (cards.isEmpty()) return null;
+            return cards.get(cards.size()-1);
+        }
+    }
+
     public int size() {
         return cards.size();
     }
+
+    public ArrayList<Card> getCards() { return cards; }
 }
