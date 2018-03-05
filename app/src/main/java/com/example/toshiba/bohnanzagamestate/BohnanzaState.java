@@ -8,7 +8,7 @@ package com.example.toshiba.bohnanzagamestate;
 public class BohnanzaState {
     private int turn = 0; // 0 = player 1, 1 =  player 2, etc.
 
-    private BohnanzaGamePlayer[] playerList = new BohnanzaGamePlayer[4];
+    private BohnanzaPlayerState[] playerList = new BohnanzaPlayerState[4];
     private Deck[] playerHands;
     private int playerCoins = 0;
     private boolean hasThirdField;
@@ -40,15 +40,14 @@ public class BohnanzaState {
                 moveTopCardTo(playerHands[j]);
             }
         }
-
-        BohnanzaGamePlayer player1 =
-                new BohnanzaGamePlayer("Reeca", playerHands[0]);
-        BohnanzaGamePlayer player2 =
-                new BohnanzaGamePlayer("Alyssa", playerHands[1]);
-        BohnanzaGamePlayer player3 =
-                new BohnanzaGamePlayer("Adam", playerHands[2]);
-        BohnanzaGamePlayer player4 =
-                new BohnanzaGamePlayer("Sarah", playerHands[3]);
+        BohnanzaPlayerState player1 =
+                new BohnanzaPlayerState("Reeca", playerHands[0]);
+        BohnanzaPlayerState player2 =
+                new BohnanzaPlayerState("Alyssa", playerHands[1]);
+        BohnanzaPlayerState player3 =
+                new BohnanzaPlayerState("Adam", playerHands[2]);
+        BohnanzaPlayerState player4 =
+                new BohnanzaPlayerState("Sarah", playerHands[3]);
 
     }
     /**
@@ -69,10 +68,42 @@ public class BohnanzaState {
 
     }
 
+    //Buy new field
+    public boolean buyThirdField(int playerId){
+
+    }
+    //plantBean
+    public boolean plantBean(int playerId){
+
+    }
+    //harvestfield
+    public boolean harvestField(int playerId){
+
+    }
+    //turntwotradecards
+    public boolean turn2Cards(int playerId){
+
+    }
+    //starttrading
+    public boolean startTrading(int playerId) {
+
+    }
+    //makeoffer
+    public boolean makeOffer(int playerId) {
+
+    }
+    //acceptoffer
+    public boolean acceptOffer(int playerId) {
+
+    }
+    //draw3cards
+    
+
     @Override
     public String toString(){
         String bigString = "";
 
         return bigString;
     }
+
 }

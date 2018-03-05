@@ -4,7 +4,7 @@ package com.example.toshiba.bohnanzagamestate;
  * Created by Toshiba on 3/4/2018.
  */
 
-public class BohnanzaGamePlayer {
+public class BohnanzaPlayerState {
     private String name;
     private int coins;
     private Deck field1;
@@ -13,13 +13,13 @@ public class BohnanzaGamePlayer {
     private Deck hand;
     private boolean hasThirdField;
 
-    public BohnanzaGamePlayer(String playerName, Deck playerHand) {
+    public BohnanzaPlayerState(String playerName, Deck playerHand) {
         name = playerName;
         hand = new Deck(playerHand);
         coins = 0;
     }
 
-    public BohnanzaGamePlayer(BohnanzaGamePlayer orig){
+    public BohnanzaPlayerState(BohnanzaPlayerState orig){
         name =  orig.name;
         coins = orig.coins;
         field1 = new Deck(orig.field1);
