@@ -41,12 +41,6 @@ public class BohnanzaState {
         }
 
         for(int i = 0; i<4; i++) {
-            playerList[i].setCoins(0);
-            playerList[i].setHasThirdField(false);
-            playerList[i].setMakeOffer(0);
-            for(int j = 0; j<3; j++) {
-                playerList[i].setField(null, j);
-            }
             //Plant beans in fields for player 0
             mainDeck.moveTopCardTo(playerList[i].getField(0));
             mainDeck.moveTopCardTo(playerList[i].getField(1));

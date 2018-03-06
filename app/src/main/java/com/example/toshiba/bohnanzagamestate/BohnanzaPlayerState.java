@@ -46,6 +46,11 @@ public class BohnanzaPlayerState {
     }
     public void setHand (Deck newHand) {hand = newHand;}
     public void setField (Deck newField, int field) {
+        /*
+        if(newField == null) {
+            return;
+        }
+        */
         fields[field] = newField;
     }
     //setMakeOffer 2 if user will make an offer, 1 if user will not
