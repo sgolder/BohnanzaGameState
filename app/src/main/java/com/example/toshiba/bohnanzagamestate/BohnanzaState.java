@@ -102,7 +102,6 @@ public class BohnanzaState {
             return false;
         }
         field.getCards().clear();
-
     }
     //turntwotradecards
     public boolean turn2Cards(int playerId){
@@ -136,4 +135,5 @@ public class BohnanzaState {
         return bigString;
     }
 
+    public BohnanzaPlayerState[] getPlayerList() { return playerList; }
 }

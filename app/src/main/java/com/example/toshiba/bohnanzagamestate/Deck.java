@@ -87,9 +87,9 @@ public class Deck {
     }
 
     public ArrayList<Card> getCards() { return cards; }
-    public void turnHandOver( Card newCard ) {
+    public void turnHandOver() {
         int oldSize = size();
-        cards.removeAll(cards);
+        cards.clear();
         for(int i = 0; i<oldSize; i++ ){
             cards.add(new Card("Card Back"));
         }
