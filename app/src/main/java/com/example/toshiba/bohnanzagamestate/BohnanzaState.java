@@ -65,8 +65,8 @@ public class BohnanzaState {
         }
 
         //Main, trade, and discard decks
-        mainDeck = new Deck(orig.mainDeck);
-        discardDeck = new Deck(orig.discardDeck);
+        mainDeck.turnHandOver();
+        discardDeck.turnHandOver();
         tradeDeck = new Deck(orig.tradeDeck);
 
         for(int i = 0; i<orig.playerList.length; i++){
