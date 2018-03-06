@@ -144,6 +144,10 @@ public class BohnanzaState {
             return false;
         }
         playerList[playerId].setMakeOffer(1);
+        if(phase != 2)
+        {
+            return false;
+        }
         return true;
     }
     //acceptoffer
@@ -165,10 +169,30 @@ public class BohnanzaState {
         if(turn != playerId) {
             return false;
         }
-        mainDeck.moveTopCardTo(playerList[playerId].getHand());
-        return true;
+        //trade deck empty, then change turn to +1 unless 3 then turn to 0
+        if(tradeDeck.getCards().isEmpty())
+        {
+            mainDeck.moveTopCardTo(playerList[playerId].getHand());
+            mainDeck.moveTopCardTo(playerList[playerId].getHand());
+            mainDeck.moveTopCardTo(playerList[playerId].getHand());
+            if(turn == 3)
+            {
+                turn = 0;
+            }
+            else
+            {
+                turn++;
+            }
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+
     }
 
+    /*
     @Override
     public String toString(){
         //Player 1 info
@@ -216,6 +240,8 @@ public class BohnanzaState {
 
         return bigString;
     }
-
+*/
     public BohnanzaPlayerState[] getPlayerList() { return playerList; }
+
 }
+
