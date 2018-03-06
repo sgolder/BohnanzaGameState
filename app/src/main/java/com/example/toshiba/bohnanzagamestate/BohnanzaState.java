@@ -126,6 +126,11 @@ public class BohnanzaState {
     //makeOffer
     public boolean makeOffer(int playerId) {
         playerList[playerId].setMakeOffer(2);
+        if(phase != 2)
+        {
+            return false;
+        }
+        //else if()
         return true;
     }
     //abstainFromTrading

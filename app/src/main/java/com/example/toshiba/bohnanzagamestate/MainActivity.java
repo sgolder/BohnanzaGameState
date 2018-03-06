@@ -30,17 +30,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             testTextEdit.setText("");
 
             BohnanzaState firstInstance  = new BohnanzaState();
-
+            BohnanzaPlayerState[] firstInstancePL = firstInstance.getPlayerList();
             BohnanzaState secondInstance = new BohnanzaState(firstInstance, 0);
 
+            firstInstancePL[0].setCoins(10);
             firstInstance.buyThirdField(0);
-            //firstInstance.plantBean(0, 1, firstInstance.playerList, neew a deck here)
-            //firstInstance.harvestField(0, need deck here);
+
+            firstInstance.plantBean(0, 1, myCard, firstInstancePL[0].getHand());
+
+            firstInstance.harvestField(0, firstInstancePL[0].getField(0));
+
             firstInstance.turn2Cards(0);
+
             firstInstance.startTrading(0);
+
             firstInstance.makeOffer(0);
+
             firstInstance.abstainFromTrading(0);
+
             firstInstance.acceptOffer(0);
+
             firstInstance.draw3Cards(0);
 
             testTextEdit.append(firstInstance.toString());
