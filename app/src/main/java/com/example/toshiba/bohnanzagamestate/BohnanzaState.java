@@ -22,7 +22,9 @@ public class BohnanzaState {
 
     public BohnanzaState() {
         mainDeck = new Deck();
-        //Implement method to put all Beans into deck
+        mainDeck.addAllCards();
+        discardDeck = null;
+        tradeDeck = null;
         //Implement shuffle class in the future
 
         playerHands[0] = new Deck();
@@ -41,6 +43,15 @@ public class BohnanzaState {
         playerList[2] = new BohnanzaPlayerState("Adam", playerHands[2]);
         playerList[3] = new BohnanzaPlayerState("Sarah", playerHands[3]);
 
+        for(int i = 0; i<4; i++) {
+            playerList[i].setCoins(0);
+            playerList[i].setHasThirdField(false);
+            playerList[i].setMakeOffer(0);
+            for(int j = 0; j<3; j++) {
+                playerList[i].setField(null, j);
+            }
+        }
+
     }
     /**
      * Deep copy a saved state
@@ -54,8 +65,8 @@ public class BohnanzaState {
         }
 
         //Main, trade, and discard decks
-        mainDeck = new Deck(orig.mainDeck);
-        discardDeck = new Deck(orig.discardDeck);
+        mainDeck.turnHandOver();
+        discardDeck.turnHandOver();
         tradeDeck = new Deck(orig.tradeDeck);
 
         for(int i = 0; i<orig.playerList.length; i++){
@@ -156,7 +167,48 @@ public class BohnanzaState {
 
     @Override
     public String toString(){
-        String bigString = "";
+        //Player 1 info
+        String player1info = "Player 1 info:\n"+
+                "Field 1: "+playerList[0].getField(0).toString()+
+                "\n Field 2: "+playerList[0].getField(1).toString()+
+                "\n Field 3: "+playerList[0].getField(2).toString()+
+                "\n Hand: "+playerList[0].getHand().toString()+
+                "\n Score: "+playerList[0].getCoins();
+
+        //Player 2 info
+        String player2info = "Player 2 info:\n"+
+                "Field 1: "+playerList[1].getField(0).toString()+
+                "\n Field 2: "+playerList[1].getField(1).toString()+
+                "\n Field 3: "+playerList[1].getField(2).toString()+
+                "\n Hand: "+playerList[1].getHand().toString()+
+                "\n Score: "+playerList[1].getCoins();
+
+
+        //Player 3 info
+        String player3info = "Player 3 info:\n"+
+                "Field 1: "+playerList[2].getField(0).toString()+
+                "\n Field 2: "+playerList[2].getField(1).toString()+
+                "\n Field 3: "+playerList[2].getField(2).toString()+
+                "\n Hand: "+playerList[2].getHand().toString()+
+                "\n Score: "+playerList[2].getCoins();
+
+
+        //Player 4 info
+        String player4info = "Player 4 info:\n"+
+                "Field 1: "+playerList[3].getField(0).toString()+
+                "\n Field 2: "+playerList[3].getField(1).toString()+
+                "\n Field 3: "+playerList[3].getField(2).toString()+
+                "\n Hand: "+playerList[3].getHand().toString()+
+                "\n Score: "+playerList[3].getCoins();
+
+        //other variables
+        String whosTurn = "Who's turn is it? player "+turn+"\n";
+        String gamePhase = "Phase: "+phase;
+
+
+
+
+        String bigString = ""+player1info+player2info+player3info+player4info+whosTurn+gamePhase;
 
         return bigString;
     }

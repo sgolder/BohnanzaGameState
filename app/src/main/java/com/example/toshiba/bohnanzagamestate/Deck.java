@@ -86,12 +86,50 @@ public class Deck {
         return cards.size();
     }
 
+    public Deck addAllCards() {
+        Deck curDeck = new Deck();
+        for(int i = 0; i <6; i++) {
+            curDeck.add(new Card("Garden Bean"));
+        }
+        for(int i = 0; i < 8; i++) {
+            curDeck.add(new Card("Red Bean"));
+        }
+        for(int i = 0; i < 10; i++) {
+            curDeck.add(new Card("Black-Eyed Bean"));
+        }
+        for(int i = 0; i < 12; i++) {
+            curDeck.add(new Card("Soy Bean"));
+        }
+        for(int i = 0; i < 14; i++) {
+            curDeck.add(new Card("Green Bean"));
+        }
+        for(int i = 0; i < 16; i++) {
+            curDeck.add(new Card("Stink Bean"));
+        }
+        for(int i = 0; i < 18; i++) {
+            curDeck.add(new Card("Chili Bean"));
+        }
+        for(int i = 0; i < 20; i++) {
+            curDeck.add(new Card("Blue Bean"));
+        }
+        return curDeck;
+    }
+
     public ArrayList<Card> getCards() { return cards; }
+
     public void turnHandOver() {
         int oldSize = size();
         cards.clear();
         for(int i = 0; i<oldSize; i++ ){
             cards.add(new Card("Card Back"));
         }
+    }
+
+    public String toString(){
+        String beanList = "";
+        for(int i = 0; i<size(); i++){
+            beanList = beanList+cards.get(i).getBeanName();
+        }
+        return beanList;
     }
 }
