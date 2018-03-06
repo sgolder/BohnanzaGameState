@@ -22,4 +22,6 @@ public class Card {
     }
 
     public void setBeanName(String newName) { beanName = newName; }
+
+    public String getBeanName() { return beanName; }
 }
