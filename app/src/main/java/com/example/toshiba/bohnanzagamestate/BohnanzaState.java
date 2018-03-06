@@ -132,26 +132,35 @@ public class BohnanzaState {
         if( turn != playerId ){
             return false;
         }
+
         return true;
     }
     //makeOffer
-    public boolean makeOffer(int playerId) {
+    public boolean makeOffer(int playerId ) {
         playerList[playerId].setMakeOffer(2);
         if(phase != 2)
         {
             return false;
         }
-        //else if()
+
         return true;
     }
     //abstainFromTrading
     public boolean abstainFromTrading(int playerId) {
         playerList[playerId].setMakeOffer(1);
+        if(phase != 2)
+        {
+            return false;
+        }
         return true;
     }
     //acceptoffer
     public boolean acceptOffer(int playerId) {
         if( turn != playerId ){
+            return false;
+        }
+        if(phase != 2)
+        {
             return false;
         }
         return true;
@@ -161,8 +170,27 @@ public class BohnanzaState {
         if(turn != playerId) {
             return false;
         }
-        mainDeck.moveTopCardTo(playerList[playerId].getHand());
-        return true;
+        //trade deck empty, then change turn to +1 unless 3 then turn to 0
+        if(tradeDeck.getCards().isEmpty())
+        {
+            mainDeck.moveTopCardTo(playerList[playerId].getHand());
+            mainDeck.moveTopCardTo(playerList[playerId].getHand());
+            mainDeck.moveTopCardTo(playerList[playerId].getHand());
+            if(turn == 3)
+            {
+                turn = 0;
+            }
+            else
+            {
+                turn++;
+            }
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+
     }
 
     @Override
