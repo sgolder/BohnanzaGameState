@@ -1,12 +1,16 @@
 package com.example.toshiba.bohnanzagamestate;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * Created by Toshiba on 3/4/2018.
  */
 
-public class Deck {
+public class Deck implements Serializable {
+
+    private static final long serialVersionUID = 3216223171210121485L;
+
     private ArrayList<Card> cards;
 
     public Deck (){
