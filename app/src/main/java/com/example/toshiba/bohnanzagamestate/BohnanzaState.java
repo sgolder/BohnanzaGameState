@@ -104,7 +104,7 @@ public class BohnanzaState {
             return false;
         }
         field.getCards().clear();
-
+        return true;
     }
     //turntwotradecards
     public boolean turn2Cards(int playerId){
@@ -121,24 +121,33 @@ public class BohnanzaState {
         if( turn != playerId ){
             return false;
         }
+        return true;
     }
     //makeOffer
     public boolean makeOffer(int playerId) {
         playerList[playerId].setMakeOffer(2);
-        return true
+        return true;
     }
     //abstainFromTrading
     public boolean abstainFromTrading(int playerId) {
         playerList[playerId].setMakeOffer(1);
+        return true;
     }
     //acceptoffer
     public boolean acceptOffer(int playerId) {
         if( turn != playerId ){
             return false;
         }
+        return true;
     }
     //draw3cards
-
+    public boolean draw3Cards (int playerId) {
+        if(turn != playerId) {
+            return false;
+        }
+        mainDeck.moveTopCardTo(playerList[playerId].getHand());
+        return true;
+    }
 
     @Override
     public String toString(){
