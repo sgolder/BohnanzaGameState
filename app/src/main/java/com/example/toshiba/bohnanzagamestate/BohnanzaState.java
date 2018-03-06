@@ -14,6 +14,7 @@ public class BohnanzaState {
     //Deck class will include current iteration
     private Deck mainDeck;
     private Deck discardDeck;
+    private Deck tradeDeck;
 
     // 0: plant, 1: trade card 1 ...
     private int phase;
@@ -52,9 +53,10 @@ public class BohnanzaState {
             playerList[i] = new BohnanzaPlayerState(orig.playerList[i]);
         }
 
-        //Main and discard decks
+        //Main, trade, and discard decks
         mainDeck = new Deck(orig.mainDeck);
         discardDeck = new Deck(orig.discardDeck);
+        tradeDeck = new Deck(orig.tradeDeck);
 
         for(int i = 0; i<orig.playerList.length; i++){
             if(i != playerId){
@@ -108,16 +110,25 @@ public class BohnanzaState {
         if( turn != playerId ){
             return false;
         }
+        //move top two cards to trade deck
+        mainDeck.moveTopCardTo(tradeDeck);
+        mainDeck.moveTopCardTo(tradeDeck);
+        return true;
     }
-    //starttrading
+    //startTrading
     public boolean startTrading(int playerId) {
         if( turn != playerId ){
             return false;
         }
     }
-    //makeoffer
+    //makeOffer
     public boolean makeOffer(int playerId) {
-
+        playerList[playerId].setMakeOffer(2);
+        return true
+    }
+    //abstainFromTrading
+    public boolean abstainFromTrading(int playerId) {
+        playerList[playerId].setMakeOffer(1);
     }
     //acceptoffer
     public boolean acceptOffer(int playerId) {
