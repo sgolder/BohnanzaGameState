@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         if (buttonLabel.equalsIgnoreCase("Run Test"))
         {
-            testTextEdit.setText("");
+            testTextEdit.setText("hello");
 
             BohnanzaState firstInstance  = new BohnanzaState();
             BohnanzaPlayerState[] firstInstancePL = firstInstance.getPlayerList();
@@ -52,8 +52,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             firstInstance.draw3Cards(0);
 
-            testTextEdit.append(firstInstance.toString());
-
+            //testTextEdit.append(firstInstance.toString());
 
         }
 
