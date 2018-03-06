@@ -25,6 +25,8 @@ public class MainActivity extends AppCompatActivity  {
         @Override
         public void onClick(View v) {
             Card myCard = new Card("blueBean");
+            Card[] cardArray = new Card[1];
+            cardArray[0] = myCard;
             Button runTest = (Button) v;
             String buttonLabel = (String) runTest.getText();
 
@@ -46,11 +48,11 @@ public class MainActivity extends AppCompatActivity  {
 
                 firstInstance.startTrading(0);
 
-                firstInstance.makeOffer(0);
+                firstInstance.makeOffer(0, cardArray);
 
                 firstInstance.abstainFromTrading(0);
 
-                firstInstance.acceptOffer(0);
+                firstInstance.acceptOffer(0, 1);
 
                 firstInstance.draw3Cards(0);
 

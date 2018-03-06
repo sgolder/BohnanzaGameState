@@ -36,7 +36,7 @@ public class BohnanzaState {
 
         for (int j = 0; j < 4; j++) {
             for (int i = 0; i < 5; i++) {
-                mainDeck.moveTopCardTo(playerList[i].getHand());
+                mainDeck.moveTopCardTo(playerList[j].getHand());
             }
         }
 
