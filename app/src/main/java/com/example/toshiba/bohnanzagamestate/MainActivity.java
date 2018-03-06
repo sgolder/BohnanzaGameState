@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity  {
 
                 BohnanzaState firstInstance = new BohnanzaState();
                 BohnanzaPlayerState[] firstInstancePL = firstInstance.getPlayerList();
-                BohnanzaState secondInstance = new BohnanzaState(firstInstance, 0);
+                //BohnanzaState secondInstance = new BohnanzaState(firstInstance, 0);
 
                 firstInstancePL[0].setCoins(10);
                 firstInstance.buyThirdField(0);
