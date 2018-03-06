@@ -21,13 +21,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        Card myCard = new Card(blueBean);
+        Card myCard = new Card("blueBean");
         Button runTest = (Button)v;
         String buttonLabel = (String)runTest.getText();
 
         if (buttonLabel.equalsIgnoreCase("Run Test"))
         {
-            testTextEdit.clearComposingText();
+            testTextEdit.setText("");
 
             BohnanzaState firstInstance  = new BohnanzaState();
 
@@ -37,7 +37,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             //firstInstance.plantBean(0, 1, firstInstance.playerList, neew a deck here)
             //firstInstance.harvestField(0, need deck here);
             firstInstance.turn2Cards(0);
-            firstInstance.
+            firstInstance.startTrading(0);
+            firstInstance.makeOffer(0);
+            firstInstance.abstainFromTrading(0);
+            firstInstance.acceptOffer(0);
+            firstInstance.draw3Cards(0);
+
+            testTextEdit.append(firstInstance.toString());
 
 
         }
