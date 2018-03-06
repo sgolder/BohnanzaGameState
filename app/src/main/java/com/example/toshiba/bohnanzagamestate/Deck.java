@@ -116,11 +116,20 @@ public class Deck {
     }
 
     public ArrayList<Card> getCards() { return cards; }
+
     public void turnHandOver() {
         int oldSize = size();
         cards.clear();
         for(int i = 0; i<oldSize; i++ ){
             cards.add(new Card("Card Back"));
         }
+    }
+
+    public String toString(){
+        String beanList = "";
+        for(int i = 0; i<size(); i++){
+            beanList = beanList+cards.get(i).getBeanName();
+        }
+        return beanList;
     }
 }
