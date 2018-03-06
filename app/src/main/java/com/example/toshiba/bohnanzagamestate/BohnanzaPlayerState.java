@@ -15,6 +15,9 @@ public class BohnanzaPlayerState {
     public BohnanzaPlayerState(String playerName) {
         name = playerName;
         hand = new Deck();
+        coins = 0;
+        hasThirdField = false;
+        makeOffer = 0;
     }
 
     public BohnanzaPlayerState(BohnanzaPlayerState orig){
