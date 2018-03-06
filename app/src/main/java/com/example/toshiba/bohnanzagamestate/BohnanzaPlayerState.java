@@ -41,6 +41,6 @@ public class BohnanzaPlayerState {
     public void setHasThirdField (boolean newHasThirdField) {hasThirdField = newHasThirdField;}
     public void setHand (Deck newHand) {hand = newHand;}
     public void setField (Deck newField, int field) {fields[field] = newField;}
-    //setMakeOffer 2 if user will make an offer, 1 if user will not make an offer, 0 if they are unsure
+    //setMakeOffer 2 if user will make an offer, 1 if user will not make an offer, 0 if they have not decided
     public void setMakeOffer(int newMakeOffer) {makeOffer = newMakeOffer;}
 }
