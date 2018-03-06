@@ -26,15 +26,17 @@ public class MainActivity extends AppCompatActivity  {
         @Override
         public void onClick(View v) {
             Card myCard = new Card("blueBean");
+            Card[] cardArray = new Card[1];
+            cardArray[0] = myCard;
             Button runTest = (Button) v;
             String buttonLabel = (String) runTest.getText();
 
             if (buttonLabel.equalsIgnoreCase("Run Test")) {
-                testTextEdit.setText("");
+                testTextEdit.setText("hello");
 
                 BohnanzaState firstInstance = new BohnanzaState();
                 BohnanzaPlayerState[] firstInstancePL = firstInstance.getPlayerList();
-                BohnanzaState secondInstance = new BohnanzaState(firstInstance, 0);
+                //BohnanzaState secondInstance = new BohnanzaState(firstInstance, 0);
 
                 firstInstancePL[0].setCoins(10);
                 firstInstance.buyThirdField(0);
@@ -47,11 +49,11 @@ public class MainActivity extends AppCompatActivity  {
 
                 firstInstance.startTrading(0);
 
-                firstInstance.makeOffer(0);
+                firstInstance.makeOffer(0, cardArray);
 
                 firstInstance.abstainFromTrading(0);
 
-                firstInstance.acceptOffer(0);
+                firstInstance.acceptOffer(0, 1);
 
                 firstInstance.draw3Cards(0);
 

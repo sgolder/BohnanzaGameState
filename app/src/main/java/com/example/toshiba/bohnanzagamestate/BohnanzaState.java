@@ -16,7 +16,9 @@ public class BohnanzaState {
     private Deck discardDeck;
     private Deck tradeDeck;
 
-    // 0: plant, 1: trade card 1 ...
+    // Phase 0: Begin turn and plant initial beans
+    // Phase 1: Turn over two cards and decide to trade or plant
+    // Phase 2: Trading
     private int phase;
 
 
@@ -27,31 +29,22 @@ public class BohnanzaState {
         tradeDeck = null;
         //Implement shuffle class in the future
 
-        playerHands[0] = new Deck();
-        playerHands[1] = new Deck();
-        playerHands[2] = new Deck();
-        playerHands[3] = new Deck();
+        playerList[0] = new BohnanzaPlayerState("Reeca");
+        playerList[1] = new BohnanzaPlayerState("Alyssa");
+        playerList[2] = new BohnanzaPlayerState("Adam");
+        playerList[3] = new BohnanzaPlayerState("Sarah");
 
         for (int j = 0; j < 4; j++) {
             for (int i = 0; i < 5; i++) {
-                mainDeck.moveTopCardTo(playerHands[j]);
+                mainDeck.moveTopCardTo(playerList[j].getHand());
             }
         }
-
-        playerList[0] = new BohnanzaPlayerState("Reeca", playerHands[0]);
-        playerList[1] = new BohnanzaPlayerState("Alyssa", playerHands[1]);
-        playerList[2] = new BohnanzaPlayerState("Adam", playerHands[2]);
-        playerList[3] = new BohnanzaPlayerState("Sarah", playerHands[3]);
 
         for(int i = 0; i<4; i++) {
-            playerList[i].setCoins(0);
-            playerList[i].setHasThirdField(false);
-            playerList[i].setMakeOffer(0);
-            for(int j = 0; j<3; j++) {
-                playerList[i].setField(null, j);
-            }
+            //Plant beans in fields for player 0
+            mainDeck.moveTopCardTo(playerList[i].getField(0));
+            mainDeck.moveTopCardTo(playerList[i].getField(1));
         }
-
     }
     /**
      * Deep copy a saved state
@@ -129,24 +122,26 @@ public class BohnanzaState {
     }
     //startTrading
     public boolean startTrading(int playerId) {
-        if( turn != playerId ){
+        if( turn != playerId || phase != 1 ){
             return false;
         }
-
+        phase = 2;
         return true;
     }
     //makeOffer
-    public boolean makeOffer(int playerId ) {
-        playerList[playerId].setMakeOffer(2);
-        if(phase != 2)
-        {
+    public boolean makeOffer(int traderId, Card[] offer) {
+        if(phase != 2) {
             return false;
         }
-
+        playerList[traderId].setMakeOffer(2);
+        playerList[traderId].setOffer(offer);
         return true;
     }
     //abstainFromTrading
     public boolean abstainFromTrading(int playerId) {
+        if(phase != 2) {
+            return false;
+        }
         playerList[playerId].setMakeOffer(1);
         if(phase != 2)
         {
@@ -155,13 +150,16 @@ public class BohnanzaState {
         return true;
     }
     //acceptoffer
-    public boolean acceptOffer(int playerId) {
-        if( turn != playerId ){
+    public boolean acceptOffer(int playerId, int traderId) {
+        if( turn != playerId || phase != 2 ||
+                playerList[traderId].getMakeOffer() != 2){
             return false;
         }
-        if(phase != 2)
-        {
-            return false;
+        Deck traderHand = playerList[traderId].getHand();
+        Deck playerHand = playerList[playerId].getHand();
+        while( !(traderHand.getCards().get(0).getBeanName().
+                equalsIgnoreCase("CardBack"))){
+            traderHand.moveTopCardTo(playerHand);
         }
         return true;
     }
@@ -193,6 +191,7 @@ public class BohnanzaState {
 
     }
 
+    /*
     @Override
     public String toString(){
         //Player 1 info
@@ -240,6 +239,8 @@ public class BohnanzaState {
 
         return bigString;
     }
-
+*/
     public BohnanzaPlayerState[] getPlayerList() { return playerList; }
+
 }
+

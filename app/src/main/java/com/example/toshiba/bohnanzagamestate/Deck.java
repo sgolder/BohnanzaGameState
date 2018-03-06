@@ -1,12 +1,16 @@
 package com.example.toshiba.bohnanzagamestate;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * Created by Toshiba on 3/4/2018.
  */
 
-public class Deck {
+public class Deck implements Serializable {
+
+    private static final long serialVersionUID = 3216223171210121485L;
+
     private ArrayList<Card> cards;
 
     public Deck (){
@@ -86,33 +90,31 @@ public class Deck {
         return cards.size();
     }
 
-    public Deck addAllCards() {
-        Deck curDeck = new Deck();
+    public void addAllCards() {
         for(int i = 0; i <6; i++) {
-            curDeck.add(new Card("Garden Bean"));
+            this.add(new Card("Garden Bean"));
         }
         for(int i = 0; i < 8; i++) {
-            curDeck.add(new Card("Red Bean"));
+            this.add(new Card("Red Bean"));
         }
         for(int i = 0; i < 10; i++) {
-            curDeck.add(new Card("Black-Eyed Bean"));
+            this.add(new Card("Black-Eyed Bean"));
         }
         for(int i = 0; i < 12; i++) {
-            curDeck.add(new Card("Soy Bean"));
+            this.add(new Card("Soy Bean"));
         }
         for(int i = 0; i < 14; i++) {
-            curDeck.add(new Card("Green Bean"));
+            this.add(new Card("Green Bean"));
         }
         for(int i = 0; i < 16; i++) {
-            curDeck.add(new Card("Stink Bean"));
+            this.add(new Card("Stink Bean"));
         }
         for(int i = 0; i < 18; i++) {
-            curDeck.add(new Card("Chili Bean"));
+            this.add(new Card("Chili Bean"));
         }
         for(int i = 0; i < 20; i++) {
-            curDeck.add(new Card("Blue Bean"));
+            this.add(new Card("Blue Bean"));
         }
-        return curDeck;
     }
 
     public ArrayList<Card> getCards() { return cards; }
@@ -121,10 +123,11 @@ public class Deck {
         int oldSize = size();
         cards.clear();
         for(int i = 0; i<oldSize; i++ ){
-            cards.add(new Card("Card Back"));
+            cards.add(new Card("CardBack"));
         }
     }
-
+/*
+    @Override
     public String toString(){
         String beanList = "";
         for(int i = 0; i<size(); i++){
@@ -132,4 +135,5 @@ public class Deck {
         }
         return beanList;
     }
+    */
 }
