@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             firstInstance.acceptOffer(0);
             firstInstance.draw3Cards(0);
 
-            testTextEdit.append(firstInstance.toString());
+            testTextEdit.append(firstInstance.toString());+
 
 
         }

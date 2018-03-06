@@ -129,9 +129,10 @@ public class BohnanzaState {
     }
     //startTrading
     public boolean startTrading(int playerId) {
-        if( turn != playerId ){
+        if( turn != playerId || phase != 1 ){
             return false;
         }
+        phase = 2;
         return true;
     }
     //makeOffer
