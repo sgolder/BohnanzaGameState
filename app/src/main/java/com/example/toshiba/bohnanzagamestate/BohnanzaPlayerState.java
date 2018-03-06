@@ -27,6 +27,16 @@ public class BohnanzaPlayerState {
         hasThirdField = orig.hasThirdField;
     }
 
-    //Getters and setters
+    //Getter methods
     public Deck getField(int field) { return fields[field]; }
+    public String getName() {return name;}
+    public int getCoins() {return coins;}
+    public Deck getHand() {return hand;}
+    public boolean getHasThirdField() {return hasThirdField;}
+
+    //setter methods
+    public void setName (String newName) {name = newName;}
+    public void setCoins (int newCoins) {coins = newCoins;}
+    public void setHasThirdField (boolean newHasThirdField) {hasThirdField = newHasThirdField;}
+    public void setHand (Deck newHand) {hand = newHand;}
 }
