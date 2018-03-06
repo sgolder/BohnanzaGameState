@@ -22,7 +22,9 @@ public class BohnanzaState {
 
     public BohnanzaState() {
         mainDeck = new Deck();
-        //Implement method to put all Beans into deck
+        mainDeck.addAllCards();
+        discardDeck = null;
+        tradeDeck = null;
         //Implement shuffle class in the future
 
         playerHands[0] = new Deck();
@@ -40,6 +42,15 @@ public class BohnanzaState {
         playerList[1] = new BohnanzaPlayerState("Alyssa", playerHands[1]);
         playerList[2] = new BohnanzaPlayerState("Adam", playerHands[2]);
         playerList[3] = new BohnanzaPlayerState("Sarah", playerHands[3]);
+
+        for(int i = 0; i<4; i++) {
+            playerList[i].setCoins(0);
+            playerList[i].setHasThirdField(false);
+            playerList[i].setMakeOffer(0);
+            for(int j = 0; j<3; j++) {
+                playerList[i].setField(null, j);
+            }
+        }
 
     }
     /**
