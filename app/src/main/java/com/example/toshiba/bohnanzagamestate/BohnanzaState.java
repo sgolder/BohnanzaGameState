@@ -44,17 +44,23 @@ public class BohnanzaState {
     /**
      * Deep copy a saved state
      */
-    public BohnanzaState(BohnanzaState orig) {
+    public BohnanzaState(BohnanzaState orig, int playerId) {
         turn = orig.turn;
         phase = orig.phase; // 0: plant, 1: trade card 1 ...
 
         for(int i = 0; i<4; i++) {
-            playerList[i] = orig.playerList[i];
+            playerList[i] = new BohnanzaPlayerState(orig.playerList[i]);
         }
 
         //Main and discard decks
         mainDeck = new Deck(orig.mainDeck);
         discardDeck = new Deck(orig.discardDeck);
+
+        for(int i = 0; i<orig.playerList.length; i++){
+            if(i != playerId){
+                playerList[i].getHand().turnHandOver();
+            }
+        }
     }
 
     //Buy new field
