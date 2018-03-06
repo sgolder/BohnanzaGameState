@@ -18,6 +18,9 @@ public class BohnanzaPlayerState {
         coins = 0;
         hasThirdField = false;
         makeOffer = 0;
+        for( int i = 0; i<3; i++ ){
+            fields[i] = new Deck();
+        }
     }
 
     public BohnanzaPlayerState(BohnanzaPlayerState orig){
