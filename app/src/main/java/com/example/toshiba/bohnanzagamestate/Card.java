@@ -20,4 +20,6 @@ public class Card {
         Card c = (Card)other;
         return this.beanName.equals(c.beanName);
     }
+
+    public void setBeanName(String newName) { beanName = newName; }
 }

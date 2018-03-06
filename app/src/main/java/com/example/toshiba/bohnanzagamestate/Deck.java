@@ -12,6 +12,7 @@ public class Deck {
     public Deck (){
         cards = new ArrayList<Card>();
     }
+
     public Deck(Deck orig) {
         // synchronize to ensure that original is not being modified as we
         // iterate over it
@@ -86,4 +87,11 @@ public class Deck {
     }
 
     public ArrayList<Card> getCards() { return cards; }
+    public void turnHandOver( Card newCard ) {
+        int oldSize = size();
+        cards.removeAll(cards);
+        for(int i = 0; i<oldSize; i++ ){
+            cards.add(new Card("Card Back"));
+        }
+    }
 }
