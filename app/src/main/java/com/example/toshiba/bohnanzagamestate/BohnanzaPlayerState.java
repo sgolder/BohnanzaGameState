@@ -10,6 +10,7 @@ public class BohnanzaPlayerState {
     private Deck[] fields;
     private Deck hand;
     private boolean hasThirdField;
+    private int makeOffer;
 
     public BohnanzaPlayerState(String playerName, Deck playerHand) {
         name = playerName;
@@ -33,10 +34,13 @@ public class BohnanzaPlayerState {
     public int getCoins() {return coins;}
     public Deck getHand() {return hand;}
     public boolean getHasThirdField() {return hasThirdField;}
+    public int getMakeOffer() {return makeOffer;}
 
     //setter methods
     public void setName (String newName) {name = newName;}
     public void setCoins (int newCoins) {coins = newCoins;}
     public void setHasThirdField (boolean newHasThirdField) {hasThirdField = newHasThirdField;}
     public void setHand (Deck newHand) {hand = newHand;}
+    //setMakeOffer 2 if user will make an offer, 1 if user will not make an offer, 0 if they are unsure
+    public void setMakeOffer(int newMakeOffer) {makeOffer = newMakeOffer;}
 }
