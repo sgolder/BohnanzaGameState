@@ -9,7 +9,6 @@ public class BohnanzaState {
     private int turn = 0; // 0 = player 1, 1 =  player 2, etc.
 
     private BohnanzaPlayerState[] playerList = new BohnanzaPlayerState[4];
-    private Deck[] playerHands;
 
     //Deck class will include current iteration
     private Deck mainDeck;
@@ -27,21 +26,16 @@ public class BohnanzaState {
         tradeDeck = null;
         //Implement shuffle class in the future
 
-        playerHands[0] = new Deck();
-        playerHands[1] = new Deck();
-        playerHands[2] = new Deck();
-        playerHands[3] = new Deck();
+        playerList[0] = new BohnanzaPlayerState("Reeca");
+        playerList[1] = new BohnanzaPlayerState("Alyssa");
+        playerList[2] = new BohnanzaPlayerState("Adam");
+        playerList[3] = new BohnanzaPlayerState("Sarah");
 
         for (int j = 0; j < 4; j++) {
             for (int i = 0; i < 5; i++) {
-                mainDeck.moveTopCardTo(playerHands[j]);
+                mainDeck.moveTopCardTo(playerList[i].getHand());
             }
         }
-
-        playerList[0] = new BohnanzaPlayerState("Reeca", playerHands[0]);
-        playerList[1] = new BohnanzaPlayerState("Alyssa", playerHands[1]);
-        playerList[2] = new BohnanzaPlayerState("Adam", playerHands[2]);
-        playerList[3] = new BohnanzaPlayerState("Sarah", playerHands[3]);
 
         for(int i = 0; i<4; i++) {
             playerList[i].setCoins(0);
@@ -136,24 +130,33 @@ public class BohnanzaState {
         return true;
     }
     //makeOffer
-    public boolean makeOffer(int playerId) {
-        playerList[playerId].setMakeOffer(2);
-        if(phase != 2)
-        {
+    public boolean makeOffer(int traderId, Card[] offer) {
+        if(phase != 2) {
             return false;
         }
-        //else if()
+        playerList[traderId].setMakeOffer(2);
+        playerList[traderId].setOffer(offer);
         return true;
     }
     //abstainFromTrading
     public boolean abstainFromTrading(int playerId) {
+        if(phase != 2) {
+            return false;
+        }
         playerList[playerId].setMakeOffer(1);
         return true;
     }
     //acceptoffer
-    public boolean acceptOffer(int playerId) {
-        if( turn != playerId ){
+    public boolean acceptOffer(int playerId, int traderId) {
+        if( turn != playerId || phase != 2 ||
+                playerList[traderId].getMakeOffer() != 2){
             return false;
+        }
+        Deck traderHand = playerList[traderId].getHand();
+        Deck playerHand = playerList[playerId].getHand();
+        while( !(traderHand.getCards().get(0).getBeanName().
+                equalsIgnoreCase("CardBack"))){
+            traderHand.moveTopCardTo(playerHand);
         }
         return true;
     }

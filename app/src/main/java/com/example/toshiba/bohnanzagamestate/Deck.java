@@ -121,7 +121,7 @@ public class Deck {
         int oldSize = size();
         cards.clear();
         for(int i = 0; i<oldSize; i++ ){
-            cards.add(new Card("Card Back"));
+            cards.add(new Card("CardBack"));
         }
     }
 
