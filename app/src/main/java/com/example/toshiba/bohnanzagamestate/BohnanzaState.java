@@ -9,13 +9,16 @@ public class BohnanzaState {
     private int turn = 0; // 0 = player 1, 1 =  player 2, etc.
 
     private BohnanzaPlayerState[] playerList = new BohnanzaPlayerState[4];
+    private Deck[] playerHands;
 
     //Deck class will include current iteration
     private Deck mainDeck;
     private Deck discardDeck;
     private Deck tradeDeck;
 
-    // 0: plant, 1: trade card 1 ...
+    // Phase 0: Begin turn and plant initial beans
+    // Phase 1: Turn over two cards and decide to trade or plant
+    // Phase 2: Trading
     private int phase;
 
 
