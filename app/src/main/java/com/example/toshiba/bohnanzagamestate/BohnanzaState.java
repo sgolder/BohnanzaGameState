@@ -156,4 +156,5 @@ public class BohnanzaState {
         return bigString;
     }
 
+    public BohnanzaPlayerState[] getPlayerList() { return playerList; }
 }
