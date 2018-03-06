@@ -47,8 +47,10 @@ public class BohnanzaState {
             for(int j = 0; j<3; j++) {
                 playerList[i].setField(null, j);
             }
+            //Plant beans in fields for player 0
+            mainDeck.moveTopCardTo(playerList[i].getField(0));
+            mainDeck.moveTopCardTo(playerList[i].getField(1));
         }
-
     }
     /**
      * Deep copy a saved state
