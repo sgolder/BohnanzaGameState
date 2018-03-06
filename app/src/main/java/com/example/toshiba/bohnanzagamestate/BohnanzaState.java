@@ -193,6 +193,7 @@ public class BohnanzaState {
 
     }
 
+    /*
     @Override
     public String toString(){
         //Player 1 info
@@ -240,6 +241,8 @@ public class BohnanzaState {
 
         return bigString;
     }
-
+*/
     public BohnanzaPlayerState[] getPlayerList() { return playerList; }
+
 }
+

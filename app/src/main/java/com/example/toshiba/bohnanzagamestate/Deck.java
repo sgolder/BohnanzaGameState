@@ -124,7 +124,8 @@ public class Deck {
             cards.add(new Card("Card Back"));
         }
     }
-
+/*
+    @Override
     public String toString(){
         String beanList = "";
         for(int i = 0; i<size(); i++){
@@ -132,4 +133,5 @@ public class Deck {
         }
         return beanList;
     }
+    */
 }

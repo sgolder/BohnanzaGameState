@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity  {
             String buttonLabel = (String) runTest.getText();
 
             if (buttonLabel.equalsIgnoreCase("Run Test")) {
-                testTextEdit.setText("");
+                testTextEdit.setText("hello");
 
                 BohnanzaState firstInstance = new BohnanzaState();
                 BohnanzaPlayerState[] firstInstancePL = firstInstance.getPlayerList();
